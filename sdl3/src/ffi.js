@@ -68,6 +68,18 @@ export const SDL_SYMBOLS = {
 
     // Keyboard
     SDL_GetKeyName:             { args: [ 'u32' ],                                    returns: 'string' },
+
+    // Audio
+    SDL_OpenAudioDevice:        { args: [ 'u32', 'ptr' ],                             returns: 'u32' },
+    SDL_CloseAudioDevice:       { args: [ 'u32' ] },
+    SDL_LoadWAV:                { args: [ 'string', 'ptr', 'ptr', 'ptr' ],            returns: 'u8' },
+    SDL_CreateAudioStream:      { args: [ 'ptr', 'ptr' ],                             returns: 'ptr' },
+    SDL_DestroyAudioStream:     { args: [ 'ptr' ] },
+    SDL_BindAudioStream:        { args: [ 'u32', 'ptr' ],                             returns: 'u8' },
+    SDL_PutAudioStreamData:     { args: [ 'ptr', 'ptr', 'i32' ],                      returns: 'u8' },
+    SDL_GetAudioStreamQueued:   { args: [ 'ptr' ],                                    returns: 'i32' },
+    SDL_ClearAudioStream:       { args: [ 'ptr' ],                                    returns: 'u8' },
+    SDL_free:                   { args: [ 'ptr' ] },
 };
 
 export const IMG_SYMBOLS = {

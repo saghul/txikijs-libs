@@ -101,6 +101,17 @@ export const Key = Object.freeze({
 });
 
 
+// --- Audio formats ---
+
+export const AudioFormat = Object.freeze({
+    U8:     0x0008,
+    S8:     0x8008,
+    S16:    0x8010,
+    S32:    0x8020,
+    F32:    0x8120,
+});
+
+
 // --- Scale modes ---
 
 export const ScaleMode = Object.freeze({

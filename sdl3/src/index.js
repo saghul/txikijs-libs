@@ -29,11 +29,13 @@ export {
     PixelFormat,
     TextureAccess,
     Key,
+    AudioFormat,
     ScaleMode,
     BlendMode,
     FontStyle,
 } from './constants.js';
 
 export { SDL, Window, Renderer, Texture, Surface } from './core.js';
+export { SDLAudio, Sound } from './audio.js';
 export { SDLImage } from './image.js';
 export { SDLTTF, Font } from './ttf.js';
