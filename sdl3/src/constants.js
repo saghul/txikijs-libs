@@ -41,6 +41,13 @@ export const EventType = Object.freeze({
     MOUSE_BUTTON_DOWN:      0x401,
     MOUSE_BUTTON_UP:        0x402,
     MOUSE_WHEEL:            0x403,
+    // Gamepad events
+    GAMEPAD_AXIS_MOTION:    0x650,
+    GAMEPAD_BUTTON_DOWN:    0x651,
+    GAMEPAD_BUTTON_UP:      0x652,
+    GAMEPAD_ADDED:          0x653,
+    GAMEPAD_REMOVED:        0x654,
+    GAMEPAD_REMAPPED:       0x655,
 });
 
 
@@ -128,6 +135,45 @@ export const BlendMode = Object.freeze({
     ADD:    0x00000002,
     MOD:    0x00000004,
     MUL:    0x00000008,
+});
+
+
+// --- Gamepad buttons ---
+
+export const GamepadButton = Object.freeze({
+    SOUTH:              0,
+    EAST:               1,
+    WEST:               2,
+    NORTH:              3,
+    BACK:               4,
+    GUIDE:              5,
+    START:              6,
+    LEFT_STICK:         7,
+    RIGHT_STICK:        8,
+    LEFT_SHOULDER:      9,
+    RIGHT_SHOULDER:     10,
+    DPAD_UP:            11,
+    DPAD_DOWN:          12,
+    DPAD_LEFT:          13,
+    DPAD_RIGHT:         14,
+    MISC1:              15,
+    RIGHT_PADDLE1:      16,
+    LEFT_PADDLE1:       17,
+    RIGHT_PADDLE2:      18,
+    LEFT_PADDLE2:       19,
+    TOUCHPAD:           20,
+});
+
+
+// --- Gamepad axes ---
+
+export const GamepadAxis = Object.freeze({
+    LEFTX:              0,
+    LEFTY:              1,
+    RIGHTX:             2,
+    RIGHTY:             3,
+    LEFT_TRIGGER:       4,
+    RIGHT_TRIGGER:      5,
 });
 
 

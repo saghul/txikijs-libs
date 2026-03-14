@@ -32,10 +32,13 @@ export {
     AudioFormat,
     ScaleMode,
     BlendMode,
+    GamepadButton,
+    GamepadAxis,
     FontStyle,
 } from './constants.js';
 
 export { SDL, Window, Renderer, Texture, Surface } from './core.js';
 export { SDLAudio, Sound } from './audio.js';
+export { Gamepad } from './gamepad.js';
 export { SDLImage } from './image.js';
 export { SDLTTF, Font } from './ttf.js';

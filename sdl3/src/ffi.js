@@ -80,6 +80,17 @@ export const SDL_SYMBOLS = {
     SDL_GetAudioStreamQueued:   { args: [ 'ptr' ],                                    returns: 'i32' },
     SDL_ClearAudioStream:       { args: [ 'ptr' ],                                    returns: 'u8' },
     SDL_free:                   { args: [ 'ptr' ] },
+
+    // Gamepad
+    SDL_HasGamepad:             { args: [],                                           returns: 'u8' },
+    SDL_GetGamepads:            { args: [ 'ptr' ],                                    returns: 'ptr' },
+    SDL_OpenGamepad:            { args: [ 'u32' ],                                    returns: 'ptr' },
+    SDL_CloseGamepad:           { args: [ 'ptr' ] },
+    SDL_GetGamepadName:         { args: [ 'ptr' ],                                    returns: 'string' },
+    SDL_GetGamepadID:           { args: [ 'ptr' ],                                    returns: 'u32' },
+    SDL_GamepadConnected:       { args: [ 'ptr' ],                                    returns: 'u8' },
+    SDL_GetGamepadButton:       { args: [ 'ptr', 'i32' ],                             returns: 'u8' },
+    SDL_GetGamepadAxis:         { args: [ 'ptr', 'i32' ],                             returns: 'i16' },
 };
 
 export const IMG_SYMBOLS = {
