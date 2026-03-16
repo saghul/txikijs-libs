@@ -32,6 +32,8 @@ const MAX_BULLETS = 15;
 const MAX_ROCKS = 25;
 const SPAWN_INITIAL = 50;
 const SPAWN_MIN = 15;
+const PARTICLE_COUNT = 8;
+const PARTICLE_LIFE = 20;
 
 
 // --- Sprite data (8x8, LSB = leftmost pixel) ---
@@ -302,6 +304,7 @@ let shotCooldown = 0;
 const ship = { x: WIDTH / 2, y: HEIGHT - 60 };
 const bullets = [];
 const rocks = [];
+const particles = [];
 const keysDown = new Set();
 
 
@@ -310,6 +313,7 @@ function resetGame() {
     ship.y = HEIGHT - 60;
     bullets.length = 0;
     rocks.length = 0;
+    particles.length = 0;
     score = 0;
     spawnTimer = 0;
     shotCooldown = 0;
@@ -353,6 +357,21 @@ function spawnRock() {
     }
 
     rocks.push({ x, y, vx, vy, scale, shape, tint, phase });
+}
+
+
+function spawnParticles(x, y, tint) {
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 2 + Math.random() * 4;
+
+        particles.push({
+            x, y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: PARTICLE_LIFE,
+        });
+    }
 }
 
 
@@ -425,6 +444,19 @@ function update() {
         }
     }
 
+    // Update particles
+    for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life--;
+
+        if (p.life <= 0) {
+            particles.splice(i, 1);
+        }
+    }
+
     // Bullet-rock collisions
     for (let bi = bullets.length - 1; bi >= 0; bi--) {
         const b = bullets[bi];
@@ -436,6 +468,7 @@ function update() {
             const dist = r.scale * 4 + BULLET_SCALE * 2;
 
             if (dx * dx + dy * dy < dist * dist) {
+                spawnParticles(r.x, r.y, r.tint);
                 bullets.splice(bi, 1);
                 rocks.splice(ri, 1);
                 score += (6 - r.scale) * 10;
@@ -495,6 +528,18 @@ function draw() {
         renderer.copy(tex, null, {
             x: r.x - half, y: r.y - half, w: half * 2, h: half * 2,
         });
+    }
+
+    // Particles
+    for (const p of particles) {
+        const t = p.life / PARTICLE_LIFE;
+
+        renderer.setDrawColor(
+            Math.floor(255 * t),
+            Math.floor(180 * t),
+            Math.floor(30 * t),
+        );
+        renderer.fillRect(p.x - 1, p.y - 1, 3, 3);
     }
 
     // Bullets
